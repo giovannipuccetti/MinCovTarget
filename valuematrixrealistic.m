@@ -10,9 +10,6 @@
 %T=SPLIDDIT parameter
 %alpha= expected ratio of items that each agent gives positive value to
 
-
-%example: valuematrixrealistic(4,10,1000,0.1)
-
 function z=valuematrixrealistic(n,d,T,alpha)
 
 %%%%%%%%%%%%%%%%%%%%%%REALISTIC VALUE MATRIX%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -51,8 +48,8 @@ counter=0;
 %max number of adjustment iterations
 max_counter=n*d;
 %adjustment of agents 2 to n to make sum of valuations equal to T
-while(min(min(V))<0|(max(sum(V,2))-min(sum(V,2))>0))
-  rS=sum(V,2);
+while((min(min(V))<0)|(max(sum(V,2)~=T))|(min(sum(V,2))~=T))
+    rS=sum(V,2);
 for i=1:(n-1)
   if rS(i)>T
      [M,I] = max(V(i,:));
@@ -71,7 +68,6 @@ for i=1:(n-1)
   end
 %end of while
 end
-
 %for agent 1, the value of item_null objects (selected at random) is set
 %equal to 1;
 VV(VV==0)=1;
@@ -86,7 +82,6 @@ while not(sum(VV) == T)
       return;
   end
 end
-
 %final matrix
 V=[VV;V];
 

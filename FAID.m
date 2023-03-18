@@ -34,8 +34,10 @@
 
 function g=FAID(n,d,SIM,TAR)
 
-%example tp obtain Figures 3 and 5
+%example to obtain Figures in the paper
 %FAID(4,10,1000,51)
+%FAID(10,100,1000,51)
+%FAID(20,200,1000,51)
 
 %fix the random generator seed
 rng(1);
@@ -61,7 +63,7 @@ T=1000;
       return;
   end
 %upper=upperbound for target value 
-upper=T;
+upper=2*T;
 target=linspace(0,upper,TAR);
 %matrices and vectors to store results
 time_mc=zeros(SIM,TAR);
@@ -108,13 +110,13 @@ exitp(u)=0;
 %points amongst the goos with T=1000)
 
 %uniform valued matrix
-V=valuematrixuniform(n,d,T);
+%V=valuematrixuniform(n,d,T);
 
 %more realistic matrix
 %alpha= expected ratio of items that each agent gives positive value to in
 %case a more realistic generation of value matrices is used
-%alpha=0.2;
-%V=valuematrixrealistic(n,d,T,alpha);
+alpha=0.2;
+V=valuematrixrealistic(n,d,T,alpha);
 
 %%%%%%%%%%%%%%%%%%%%%%%%SPLIDDIT%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -360,14 +362,14 @@ set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', '
 
 %select right name
 %uniform scenarios (Figure 4 in the paper)
-saveas(gcf,'FigureAU1.pdf')
+%saveas(gcf,'FigureAU1.pdf')
 %saveas(gcf,'FigureBU1.pdf')
 %saveas(gcf,'FigureCU1.pdf')
 
 %realistic scenarios (Figure 6 in the paper)
 %saveas(gcf,'FigureAR1.pdf')
 %saveas(gcf,'FigureBR1.pdf')
-%saveas(gcf,'FigureCR1.pdf')
+saveas(gcf,'FigureCR1.pdf')
 
 %%%%%%%%%%%%%%%%%%%%%%%% OUTPUT FIGURE 2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 figure;
@@ -375,7 +377,7 @@ figure;
 %three methods considered: 
 %1) MinCovTarget with target value index 1 (=MinCov) 
 %2) MinCovTarget with target value corresponding to minimal envy 
-%3) MinCovTarget with largest target value
+%3) MinCovTarget with target value=M
 %4) SLPIDDIT
 
 %vari=#success for variance for all the above methods
@@ -387,19 +389,22 @@ log_util=zeros(1,4);
 %util=#success for utility for all the above methods
 util=zeros(1,4);
 
-%tt=target value index to be considered for method 3)
+%select target value index to be considered for method 3)
+TARVALUE=26;
+
+%tt=target value index to be considered for method 2)
 [minenvy,tt]=min(envy_m);
 %find minimal variance across all methods
-VA=[vari_mc(:,1),vari_mc(:,tt),vari_mc(:,TAR),vari_sp'];
+VA=[vari_mc(:,1),vari_mc(:,tt),vari_mc(:,TARVALUE),vari_sp'];
 [I_VA,MI_VA]=min(VA, [], 2);
 %find minimal envy across all methods
-EN=[envy_mc(:,1),envy_mc(:,tt),envy_mc(:,TAR),envy_sp'];
+EN=[envy_mc(:,1),envy_mc(:,tt),envy_mc(:,TARVALUE),envy_sp'];
 [I_EN,MI_EN]=min(EN, [], 2);
 %find maximal total log-utility across all methods
-LOG_UT=[log_util_mc(:,1),log_util_mc(:,tt),log_util_mc(:,TAR),log_util_sp'];
+LOG_UT=[log_util_mc(:,1),log_util_mc(:,tt),log_util_mc(:,TARVALUE),log_util_sp'];
 [I_LOG_UT,MI_LOG_UT]=max(LOG_UT, [], 2);
 %find maximal total utility across all methods
-UT=[util_mc(:,1),util_mc(:,tt),util_mc(:,TAR),util_sp'];
+UT=[util_mc(:,1),util_mc(:,tt),util_mc(:,TARVALUE),util_sp'];
 [I_UT,MI_UT]=max(UT, [], 2);
 %count successes of each method against the four objective functions
 for i=1:SIM
@@ -437,8 +442,10 @@ y = round([vari*100/SIM; envy*100/SIM; log_util*100/SIM; util*100/SIM],1);
 bbar = bar(X,y,'FaceColor','flat');
 %format computation times for display
 leg1=strcat('MinCov (',num2str(time_m(1),'%.2g'), ' s.)');
+leg2=strcat('MinCovTarget1 (',num2str(TAR*time_m(tt),'%.2g'), ' s.)');
+leg3=strcat('MinCovTarget2 (',num2str(time_m(TARVALUE),'%.2g'), ' s.)');
 leg4=strcat('SPLIDDIT (',num2str(time_s(1),'%.2g'), ' s.)');
-set(bbar, {'DisplayName'}, {leg1,'MinCovTarget1','MinCovTarget2',leg4}')
+set(bbar, {'DisplayName'}, {leg1,leg2,leg3,leg4}')
 for k = 1:size(y,2)
     bbar(k).CData = k;
 end
@@ -478,17 +485,26 @@ text(xtips4,ytips4,labels4,'HorizontalAlignment','center',...
     'VerticalAlignment','bottom')
 set(gca,'Fontsize',14);
 
+%Save workspace
+
+%save('AU.mat')
+%save('BU.mat')
+%save('CU.mat')
+%save('AR.mat')
+%save('BR.mat')
+save('CR.mat')
 
 % Print figure
 set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12, 6])
 %select right name
 %uniform scenarios (Figure 3 in the paper)
-saveas(gcf,'FigureAU2.pdf')
+%saveas(gcf,'FigureAU2.pdf')
 %saveas(gcf,'FigureBU2.pdf')
 %saveas(gcf,'FigureCU2.pdf')
 
 %realistic scenarios (Figure 5 in the paper)
 %saveas(gcf,'FigureAR2.pdf')
 %saveas(gcf,'FigureBR2.pdf')
-%saveas(gcf,'FigureCR2.pdf')
+saveas(gcf,'FigureCR2.pdf')
+
 %%%end

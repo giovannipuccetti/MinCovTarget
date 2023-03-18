@@ -1,6 +1,6 @@
 %This is an auxiliary code for the paper  
 %"a comparison of SPLIDDIT and MinCovTarget algorithms"
-%which plots Figures 7 about the computation time
+%which plots Figures 8 about the computation time
 %of MINCOVTARGET and the % of no-envy allocation found by MinCovTarget
 %with target value tau=1000.
 
@@ -16,25 +16,25 @@ clear;
 %fix the random generator seed
 rng(1);
 %T=Goods total value (value matrix standardized to this value;
-T=1000;
+%set T=10000 when d>=300 to have more meaningful valuations) 
+T=10000;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%INPUTS%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % agents is a vector containing the FIXED numbers n of agents for which to
 
-%%%%for FIGURE 7%%%%%
 % draw the plot versus the number d of goods
-agents=[10 20 50];
+agents=[100 150 200];
 N=size(agents,2);
 % for each number of agents we give a vector with number of goods at which
 % to compute values
-xl=[50 100 150 200 250 300;
-    50 100 150 200 250 300;
-    50 100 150 200 250 300;];
+xl=[200 250 300 350 400 450 500;
+    200 250 300 350 400 450 500;
+    200 250 300 350 400 450 500;];
 res=size(xl,2);
 %SIM=number of REPETITIONS f simulation of value matrices
-SIM=50;
+SIM=20;
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%v%%%%%%%%%%
@@ -146,12 +146,13 @@ end
 tiledlayout(1,2);
 
 %auxiliary line
+onesec=repmat(30,1,res);
 onemin=repmat(1,1,res);
 
 % Left plot (comp. time)
 ax1 = nexttile;
-plot(ax1,xl(1,:),yl(1,:),'r',xl(2,:),yl(2,:),'k',xl(3,:),yl(3,:),'b',xl(3,:),onemin,'k:','MarkerSize',18,'LineWidth',2);
-text(ax1,xl(3,res-1),1.03,'1 sec.', 'FontSize',14);
+plot(ax1,xl(1,:),yl(1,:),'r',xl(2,:),yl(2,:),'k',xl(3,:),yl(3,:),'b',xl(3,:),onesec,'k:','MarkerSize',18,'LineWidth',2);
+text(ax1,xl(3,res-1),31,'30 secs.', 'FontSize',14);
 xlabel(ax1,'Number of goods');
 leg1=strcat('n= ',num2str(agents(1)));
 leg2=strcat('n= ',num2str(agents(2)));
@@ -161,7 +162,7 @@ legend('Location','northwest');
 lgd.FontSize = 12;
 title(ax1,'Computation Time (in sec.)');
 xlim([xl(1,1),xl(N,res)])
-ylim([0 1.25])
+ylim([0 37.5])
 
 % % Right plot (envy)
 ax2 = nexttile;
@@ -181,7 +182,7 @@ ylim([0 1.25])
 
 % Print figure
 set(gcf, 'Units', 'Inches', 'Position', [0, 0, 12, 6], 'PaperUnits', 'Inches', 'PaperSize', [12, 6])
-saveas(gcf,'Figure7.pdf')
+saveas(gcf,'Figure8.pdf')
 
 %save workspace
-save('Figure7_data')
+save('Figure8_data')
