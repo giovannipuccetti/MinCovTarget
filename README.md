@@ -22,7 +22,15 @@ CU/CD
 
 - Figure7 (.m and .mat) produces Figure 7
 
+- SDTcounterexample.m contains an example where Spliddit does not find the maxim Nash welfare allocation
 
+AUXILIARY FILES necessary to run the codes
+
+- valuematrixuniform.m simulates a uniform value matrix
+- valuematrixdependent.m simulates a dependent value matrix
+
+For example 5 please download:
+- permn.m (see https://it.mathworks.com/matlabcentral/fileexchange/7147-permn)
 
 IMPORTANT: Notice that the function intlinprog, necessary to solve all the SPLIDDIT MILP problems,
 cannot be run on Matlab on a M-based Apple computer.
