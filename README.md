@@ -1,15 +1,28 @@
 # MinCovTarget
 
-We provide the MatLab codes to replicate the numerical analysis in 
+We provide the MatLab codes and workspaces to replicate the numerical analysis in 
 
 Puccetti, G., Rüschendorf, L., and S. Vanduffel (2023)
-A comparison of algorithms for multi-player fair allocation of indivisible goods)
+MinCovTarget: a new standard for fair allocation
 LINK TO THE PAPER IN SSRN
 
-- FAID.m produces Figures 3-4 (with valuematrixuniform.m)
-and 5-6 (with valuematrixrealistic.m) and Figures 1-2 by trivial application.
-- Figure7.m produces Figure 7
-- Figure8.m produces Figure 8
+MAIN FILES
 
-IMPORTANT: Notice that the function intlinprog, necessary to solve the SPLIDDIT problem,
+- Example5 (.m and .mat) produces the pedagogical example given in Section 5
+
+- Figure 23.m produces the value matrices given in Figures 2 and 3
+
+- FAID.m produces all plots in Figure 4 and Figure 5. THe corresponding workspaces are
+AU/AD
+BU/BD
+CU/CD
+.mat
+
+- Figure6 (.m and .mat) produces Figure 6
+
+- Figure7 (.m and .mat) produces Figure 7
+
+
+
+IMPORTANT: Notice that the function intlinprog, necessary to solve all the SPLIDDIT MILP problems,
 cannot be run on Matlab on a M-based Apple computer.
