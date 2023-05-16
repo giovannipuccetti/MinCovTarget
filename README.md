@@ -22,7 +22,7 @@ CU/CD
 
 - Figure7 (.m and .mat) produces Figure 7
 
-- SDTcounterexample.m contains an example where Spliddit does not find the maxim Nash welfare allocation
+- SPDcounterexample.m contains an example where Spliddit does not find the maxim Nash welfare allocation
 
 AUXILIARY FILES necessary to run the codes
 
