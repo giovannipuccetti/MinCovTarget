@@ -5,7 +5,7 @@ We provide the MatLab codes and workspaces to replicate the numerical analysis i
 Puccetti, G., Rüschendorf, L., and S. Vanduffel (2023)
 MinCovTarget: a new standard for fair allocation
 
-LINK TO THE PAPER IN SSRN
+[LINK TO THE PAPER IN SSRN](https://ssrn.com/abstract=4456478)
 
 MAIN FILES
 
