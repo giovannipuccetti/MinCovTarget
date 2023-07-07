@@ -34,4 +34,4 @@ For example 5 please download:
 - permn.m (see https://it.mathworks.com/matlabcentral/fileexchange/7147-permn)
 
 IMPORTANT: Notice that the function intlinprog, necessary to solve all the SPLIDDIT MILP problems,
-cannot be run on Matlab on a M-based Apple computer.
+needs the MATLAB R2023b Prerelease to be run on a native Apple-Silicon processor.  
