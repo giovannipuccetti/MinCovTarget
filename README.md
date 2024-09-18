@@ -9,7 +9,7 @@ MinCovTarget: a new standard for fair allocation
 
 MAIN FILES
 
-- Example5 (.m and .mat) produces the pedagogical example given in Section 5
+- Example5.m  produces the pedagogical example given in Section 5
 
 - Figure 23.m produces the value matrices given in Figures 2 and 3
 
