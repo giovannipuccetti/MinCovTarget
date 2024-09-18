@@ -3,7 +3,7 @@
 clear all
 
 %fix the random generator seed for reproducibility
-rng(1);
+rng(4);
 %n=number of agents
 n=4;
 %d=number of goods
@@ -25,6 +25,28 @@ V = [
 
 P=permn(1:n,d);
 N=n^d;
+
+%%%%%%% MAXIMUM WELFARE ALGORITHM  %%%%%%%
+
+% each item is given to (one of) the agent that values it most.
+
+alloc=zeros(n,d);
+tic
+[M,Z]=max(V,[],1);
+for ii=1:d
+   alloc(Z(ii),ii)=1;
+end
+X=zeros(n,d,n);
+for k=1:n
+X(:,:,k)=alloc.*repmat(V(k,:),n,1);
+end
+vari_sw=sum(var(sum(X,2),1))/n;
+E_sw=squeeze(sum(X,2));
+envy_sw=max(max(E_sw-transpose(kron(diag(E_sw),ones(1,n)))));
+log_util_sw=sum(log10(diag(E_sw)));
+util_sw=sum((diag(E_sw)));
+time_sw=toc;
+
 
 %%%%%%% BRUTE FORCE ALGORITHM  %%%%%%%
 
@@ -67,24 +89,6 @@ envy_o_index=find(envy_bf<=envy_o+eps);
 %find (exact) minimum inequality and all allocations attaining it
 vari_o=min(vari_bf);
 vari_o_index=find(vari_bf<=vari_o+eps);
-
-%Maximum social welfare allocation
-
-alloc_sw=zeros(n,d);
-for ii=1:d
-   alloc_sw(P(util_o_index,ii),ii)=1;
-end
-alloc_sw=reshape(alloc_sw,n,d);
-X=zeros(n,d,n);
-for k=1:n
-X(:,:,k)=alloc_sw.*repmat(V(k,:),n,1);
-end
-vari_sw=sum(var(sum(X,2),1))/n;
-%notice that in the paper we give transpose(E)
-E_sw=squeeze(sum(X,2));
-envy_sw=max(max(E_sw-transpose(kron(diag(E_sw),ones(1,n)))));
-log_util_sw=sum(log10(diag(E_sw)));
-util_sw=sum((diag(E_sw)));
 
 %Analysis of minimum inequality allocations
 
@@ -177,7 +181,7 @@ max(alloc_nw-alloc_sp);
 %%%%%%%%%%%%%%%%%%%%%%%%MINCOVTARGET+ algorithm%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %vector of target values
 TAR=51;
-upper=2000;
+upper=1000;
 target=linspace(0,upper,TAR);
 
 %vector to store MinCovTarget results
