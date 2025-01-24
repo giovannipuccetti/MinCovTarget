@@ -2,30 +2,35 @@
 
 We provide the MatLab codes and workspaces to replicate the numerical analysis in 
 
-Puccetti, G., Rüschendorf, L., and S. Vanduffel (2023)
-MinCovTarget: a new standard for fair allocation
+Puccetti, G., Rüschendorf, L., and S. Vanduffel (2025)
+MinCovTarget+: a new standard for fair and eﬃcient allocations
 
 [LINK TO THE PAPER IN SSRN](https://ssrn.com/abstract=4456478)
 
-MAIN FILES
+**MAIN FILES**
 
-- Example5.m  produces the pedagogical example given in Section 5
+- Example5.m (.mat) produces the pedagogical example given in Section 5
 
 - Figure 23.m produces the value matrices given in Figures 2 and 3
 
-- FAID.m produces all plots in Figure 4 and Figure 5. The corresponding workspaces are
-AU/AD
-BU/BD
-CU/CD
-.mat
+****- Code to reproduce Figures 4 and 5:****
+
+Scenario A: AU (uniform values) / AD (dependent values)
+Scenario B: BU (uniform values) / BD (dependent values)
+Scenario C: CU (uniform values) / CD (dependent values)
+.m (code) .mat (data)
 
 - Figure6 (.m and .mat) produces Figure 6
 
 - Figure7 (.m and .mat) produces Figure 7
 
-- SPDcounterexample.m contains an example where Spliddit does not find the maxim Nash welfare allocation
+-Score (.m and .mat) computes the score function in Figure 8
 
-AUXILIARY FILES necessary to run the codes
+- FiguresHighdim.m (.mat) computes statistics for a given large-dimensional case
+
+- Splidditsuccess.m (.mat)compute % of success of Spliddit runs for a given large-dimensional case
+
+**AUXILIARY FILES necessary to run the codes**
 
 - valuematrixuniform.m simulates a uniform value matrix
 - valuematrixdependent.m simulates a dependent value matrix
