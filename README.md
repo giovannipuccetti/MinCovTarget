@@ -13,8 +13,8 @@ MinCovTarget+: a new standard for fair and eﬃcient allocations
 
 - Figure 23.m produces the value matrices given in Figures 2 and 3
 
-****- Code to reproduce Figures 4 and 5:****
-
+- Code to reproduce Figures 4 and 5:
+  
 Scenario A: AU (uniform values) / AD (dependent values)
 Scenario B: BU (uniform values) / BD (dependent values)
 Scenario C: CU (uniform values) / CD (dependent values)
@@ -37,6 +37,3 @@ Scenario C: CU (uniform values) / CD (dependent values)
 
 For example 5 please download:
 - permn.m (see https://it.mathworks.com/matlabcentral/fileexchange/7147-permn)
-
-IMPORTANT: Notice that the function intlinprog, necessary to solve all the SPLIDDIT MILP problems,
-needs the MATLAB R2023b Prerelease to be run on a native Apple-Silicon processor.  
