@@ -28,7 +28,7 @@ Scenario C: CU (uniform values) / CD (dependent values)
 
 - FiguresHighdim.m (.mat) computes statistics for a given large-dimensional case
 
-- Splidditsuccess.m (.mat)compute % of success of Spliddit runs for a given large-dimensional case
+- Splidditsuccess.m (.mat) computes % of success of Spliddit runs for a given large-dimensional case
 
 **AUXILIARY FILES necessary to run the codes**
 
