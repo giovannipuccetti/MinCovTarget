@@ -3,7 +3,10 @@
 We provide the MatLab codes and workspaces to replicate the numerical analysis in 
 
 Puccetti, G., Rüschendorf, L., and S. Vanduffel (2025)
-MinCovTarget+: a new standard for fair and eﬃcient allocations
+Mincovtarget+: a fast heuristic algorithm for fair allocation
+Annals of Operations Research
+
+https://doi.org/10.1007/s10479-025-06913-0
 
 [LINK TO THE PAPER IN SSRN](https://ssrn.com/abstract=4456478)
 
